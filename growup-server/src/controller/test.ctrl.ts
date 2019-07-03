@@ -12,7 +12,6 @@ const getText = async (ctx: Context) => {
   await testRepo.save(test);
 
   const tests = await testRepo.find();
-  console.log('tests: ', tests);
 
   ctx.status = 200;
   ctx.body = {

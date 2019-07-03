@@ -1,11 +1,13 @@
 import { Context } from 'koa';
 import * as Router from 'koa-router';
+import Container from 'typedi';
 
-import { TestCtrl } from '../controller';
+import { CurationPostCtrl } from '../controller';
 
 const rootRouter: Router = new Router();
+const curationPostCtrl = Container.get(CurationPostCtrl);
 
-rootRouter.get('/test', TestCtrl.getText);
+rootRouter.get('/test', curationPostCtrl.getPosts);
 
 rootRouter.all('*', (ctx: Context) => {
   ctx.status = 404;

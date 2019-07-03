@@ -1,3 +1,3 @@
-import * as TestCtrl from './test.ctrl';
+import CurationPostCtrl from './curationPost.ctrl';
 
-export { TestCtrl };
+export { CurationPostCtrl };
