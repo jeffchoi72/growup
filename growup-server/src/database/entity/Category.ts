@@ -1,6 +1,6 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 
-import CurationPostCategory from './CurationPostCategory';
+import { CurationPost } from '.';
 
 @Entity({ name: 'categories' })
 class Category {
@@ -10,10 +10,8 @@ class Category {
   @Column({ name: 'name' })
   name: string;
 
-  @OneToMany(type => CurationPostCategory, curationPostCategory => curationPostCategory.category, {
-    cascade: true
-  })
-  curationPostCategories: CurationPostCategory[];
+  @ManyToMany(type => CurationPost, curationPost => curationPost.categories)
+  curationPosts: CurationPost[];
 }
 
 export default Category;

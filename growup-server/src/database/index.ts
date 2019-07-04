@@ -1,12 +1,8 @@
 import 'reflect-metadata';
-import { createConnection, ConnectionOptions } from 'typeorm';
 
-const {
-  DATABASE_HOST,
-  DATABASE_USER,
-  DATABASE_PASSWORD,
-  DATABASE_NAME,
-} = process.env;
+import { ConnectionOptions, createConnection } from 'typeorm';
+
+const { DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_NAME } = process.env;
 
 async function connectDatabase() {
   try {
@@ -22,8 +18,8 @@ async function connectDatabase() {
       entities: [__dirname + '/entity/*{.ts,.js}'],
       timezone: 'Asia/Seoul',
       extra: { max: 2, min: 1 },
-      synchronize: true,
-      logging: true,
+      synchronize: false,
+      logging: true
     };
 
     await createConnection(options);

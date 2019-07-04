@@ -1,3 +1,3 @@
-import TestRepo from './Test.repo';
+import CurationPostRepo from './CurationPost.repo';
 
-export { TestRepo };
+export { CurationPostRepo };

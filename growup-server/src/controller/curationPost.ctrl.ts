@@ -1,19 +1,35 @@
 import { Context } from 'koa';
 import { Service } from 'typedi';
 
+import { CurationPostService } from '../service';
+
 @Service()
 class CurationPostController {
-  async getPosts(context: Context) {
-    // 페이지네이션이 가능해야함
-    // 나머지는 서비스 에서
+  constructor(private curationPostService: CurationPostService) {}
 
-    context.status = 200;
-    context.body = {
-      code: 'SUCCESS',
-      message: '성공',
-      data: null
-    };
-  }
+  getPosts = async (context: Context) => {
+    try {
+      const { offset = 0, limit = 10 } = context.query;
+
+      const posts = await this.curationPostService.getPosts(offset, limit);
+
+      context.status = 200;
+      context.body = {
+        code: 'SUCCESS',
+        message: '성공',
+        data: {
+          posts
+        }
+      };
+    } catch (error) {
+      context.status = 500;
+      context.body = {
+        code: 'SERVER_ERROR',
+        message: '서버 에러',
+        data: null
+      };
+    }
+  };
 }
 
 export default CurationPostController;

@@ -1,5 +1,3 @@
-import testService from './test.service';
+import CurationPostService from './curationPost.service';
 
-export {
-  testService
-};
+export { CurationPostService };

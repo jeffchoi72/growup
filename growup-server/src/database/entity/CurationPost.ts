@@ -1,7 +1,7 @@
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
-import CurationPostCategory from './CurationPostCategory';
-import Platform from './Platform';
+import { Category } from '.';
+import Author from './Author';
 
 @Entity({ name: 'curation_posts' })
 class CurationPost {
@@ -20,16 +20,13 @@ class CurationPost {
   @Column({ name: 'post_url' })
   postUrl: string;
 
-  @ManyToOne(type => Platform, platform => platform.id)
-  @JoinColumn({ name: 'fk_platform_id' })
-  platform: Platform;
+  @ManyToOne(type => Author, author => author.id)
+  @JoinColumn({ name: 'fk_author_id' })
+  author: Author;
 
-  @OneToMany(
-    type => CurationPostCategory,
-    curationPostCategory => curationPostCategory.curationPost,
-    { cascade: true }
-  )
-  curationPostCategories: CurationPostCategory[];
+  @ManyToMany(type => Category, category => category.id)
+  @JoinTable({ name: 'curation_posts_categories' })
+  categories: Category[];
 }
 
 export default CurationPost;
