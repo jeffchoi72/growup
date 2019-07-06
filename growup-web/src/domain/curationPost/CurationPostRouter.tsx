@@ -1,13 +1,13 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
-import CurationPostsContainer from './container/CurationPostsContainer';
+import { HomePage } from './pages';
 
 const CurationPostRouter = () => {
   return (
-    <BrowserRouter>
-      <Route exact path="/" component={CurationPostsContainer} />
-    </BrowserRouter>
+    <>
+      <Route exact path="/" component={HomePage} />
+    </>
   );
 };
 
