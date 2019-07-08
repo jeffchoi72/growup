@@ -1,7 +1,7 @@
 import React from 'react';
-import { createGlobalStyle } from 'styled-components';
 
 import RootRouter from './domain/RootRouter';
+import GlobalStyle from './styles/globalStyles';
 
 const Root: React.FC = () => {
   return (
@@ -11,16 +11,5 @@ const Root: React.FC = () => {
     </>
   );
 };
-
-const GlobalStyle = createGlobalStyle`
-  * {
-    box-sizing: border-box;
-  }
-
-  body {
-    margin: 0;
-    padding: 0;
-  }
-`;
 
 export default Root;
