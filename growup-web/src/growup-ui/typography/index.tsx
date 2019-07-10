@@ -24,9 +24,9 @@ export enum TYPOGRAPHY_TYPE {
 }
 
 const TYPOGRAPHY_CSS_BY_TYPE: {
-  [key: string]: FlattenInterpolation<
+  [key in TYPOGRAPHY_TYPE]: FlattenInterpolation<
     ThemedStyledProps<TextStyleProperties, any>
-  >;
+  >
 } = {
   [TYPOGRAPHY_TYPE.Display1]: display1,
   [TYPOGRAPHY_TYPE.Display2]: display2,
