@@ -2,6 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { CurationPostType } from '../../../../common/api/post.api';
+import * as Colors from '../../../../growup-ui/Colors';
+import Body2 from '../../../../growup-ui/typography/Body2';
+import Caption2 from '../../../../growup-ui/typography/Caption2';
+import Heading2 from '../../../../growup-ui/typography/Heading2';
 
 interface Props {
   curationPost: CurationPostType;
@@ -19,21 +23,31 @@ const CurationPost: React.FC<Props> = ({ curationPost }) => {
 
   return (
     <Container>
-      <Link href={postUrl}>
+      <Link href={postUrl} target="_blank">
         <Image src={thumbnail} />
         <Figure>
-          <Title>{title}</Title>
-          <Content>{content}</Content>
+          <Heading2 fontWeight="bold">{title}</Heading2>
+          <Content color={Colors.slate30} fontWeight="lighter">
+            {content}
+          </Content>
         </Figure>
       </Link>
       <Footer>
         <AuthorContainer>
           <AuthorProfileImage imageURL={author.iconUrl} />
-          <AuthorProfileName>{author.name}</AuthorProfileName>
+          <AuthorProfileName color={Colors.slate20} fontWeight="lighter">
+            {author.name}
+          </AuthorProfileName>
         </AuthorContainer>
         <CateogriesContainer>
           {categories.map(category => (
-            <CategoryName key={category.id}>{category.name}</CategoryName>
+            <CategoryName
+              key={category.id}
+              color={Colors.slate20}
+              fontWeight="lighter"
+            >
+              {category.name}
+            </CategoryName>
           ))}
         </CateogriesContainer>
       </Footer>
@@ -49,6 +63,7 @@ const Container = styled.div`
 
 const Link = styled.a`
   text-decoration: none;
+  color: inherit;
 `;
 
 const Image = styled.img`
@@ -60,19 +75,8 @@ const Figure = styled.div`
   padding: 12px;
 `;
 
-const Title = styled.span`
-  display: block;
-  color: #191919;
-  font-size: 22px;
-  font-weight: bold;
-  margin-bottom: 6px;
-`;
-
-const Content = styled.span`
-  display: block;
-  color: #494949;
-  font-size: 18px;
-  font-weight: lighter;
+const Content = styled(Body2)`
+  margin-top: 6px;
 `;
 
 const Footer = styled.div`
@@ -99,9 +103,7 @@ const AuthorProfileImage = styled.div<{ imageURL: string }>`
   background-position: center;
 `;
 
-const AuthorProfileName = styled.span`
-  color: #707070;
-  font-size: 12px;
+const AuthorProfileName = styled(Caption2)`
   margin-left: 8px;
 `;
 
@@ -110,10 +112,7 @@ const CateogriesContainer = styled.div`
   align-items: center;
 `;
 
-const CategoryName = styled.span`
-  color: #707070;
-  font-size: 12px;
-  font-weight: lighter;
+const CategoryName = styled(Caption2)`
   margin-right: 11px;
   cursor: pointer;
 
