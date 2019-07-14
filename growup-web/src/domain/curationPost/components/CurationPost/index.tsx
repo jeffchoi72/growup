@@ -56,9 +56,12 @@ const CurationPost: React.FC<Props> = ({ curationPost }) => {
 };
 
 const Container = styled.div`
-  width: 340px;
+  width: calc(25% - 1.75rem);
   border: 1px solid #f3f3f3;
   border-radius: 3px;
+  margin: 0.875rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 `;
 
 const Link = styled.a`

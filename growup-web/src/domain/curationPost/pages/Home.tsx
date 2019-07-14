@@ -4,6 +4,9 @@ import styled from 'styled-components';
 import Logo from '../../../common/components/Logo';
 import Navigation, { NavigationDirection } from '../../../common/components/Navigation';
 import { NAVIGATION_ITEMS } from '../../../common/components/Navigation/constants';
+import ServiceIntro from '../../../common/components/ServiceIntro';
+import Heading1 from '../../../growup-ui/typography/Heading1';
+import CurationPostsContainer from '../container/CurationPostsContainer';
 
 const HomePage: React.FC = () => {
   return (
@@ -17,7 +20,15 @@ const HomePage: React.FC = () => {
           items={NAVIGATION_ITEMS}
         />
       </SideSection>
-      <MainContainer>Main Container</MainContainer>
+      <MainSection>
+        <ServiceIntroWrapper>
+          <ServiceIntro />
+        </ServiceIntroWrapper>
+        <CurationPostsWrapper>
+          <Heading1 fontWeight="bold">ALL</Heading1>
+          <CurationPostsContainer />
+        </CurationPostsWrapper>
+      </MainSection>
     </Container>
   );
 };
@@ -35,8 +46,19 @@ const SideSection = styled.aside`
   padding: 0 50px;
 `;
 
-const MainContainer = styled.div`
-  padding: 0 80px;
+const MainSection = styled.div`
+  flex: 1;
+  padding-right: 50px;
+  padding: 0 50px;
+`;
+
+const CurationPostsWrapper = styled.div`
+  width: 100%;
+  margin-top: 70px;
+`;
+
+const ServiceIntroWrapper = styled.div`
+  margin-top: 60px;
 `;
 
 export default HomePage;

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 
 import { postApi } from '../../../common/api';
 import { CurationPostType } from '../../../common/api/post.api';
@@ -26,12 +27,19 @@ const CurationPostsContainer: React.FC = () => {
   }, []);
 
   return (
-    <div>
+    <Container>
       {posts.map(post => {
         return <CurationPost key={post.id} curationPost={post} />;
       })}
-    </div>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -0.875rem;
+  margin-right: -0.875rem;
+`;
 
 export default React.memo(CurationPostsContainer);
