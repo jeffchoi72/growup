@@ -54,7 +54,7 @@ const MainSection = styled.div`
 
 const CurationPostsWrapper = styled.div`
   width: 100%;
-  margin-top: 70px;
+  margin-top: 50px;
 `;
 
 const ServiceIntroWrapper = styled.div`

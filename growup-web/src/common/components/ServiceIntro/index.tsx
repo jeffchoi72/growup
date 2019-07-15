@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 import * as Colors from '../../../growup-ui/Colors';
-import Display2 from '../../../growup-ui/typography/Display2';
-import Headling1 from '../../../growup-ui/typography/Heading1';
+import Body1 from '../../../growup-ui/typography/Body1';
+import Heading1 from '../../../growup-ui/typography/Heading1';
 
 const ServiceIntro: React.FC = () => {
   return (
@@ -24,7 +24,7 @@ const ServiceIntro: React.FC = () => {
   );
 };
 
-const Title = styled(Display2)`
+const Title = styled(Heading1)`
   margin-bottom: 15px;
 `;
 
@@ -33,7 +33,7 @@ const PointText = styled.span`
   font-weight: bold;
 `;
 
-const Description = styled(Headling1)`
+const Description = styled(Body1)`
   margin-bottom: 8px;
 `;
 
