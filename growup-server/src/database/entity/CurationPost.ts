@@ -24,7 +24,7 @@ class CurationPost {
   @JoinColumn({ name: 'fk_author_id' })
   author: Author;
 
-  @ManyToMany(type => Category, category => category.id)
+  @ManyToMany(type => Category, category => category.name)
   @JoinTable({ name: 'curation_posts_categories' })
   categories: Category[];
 }

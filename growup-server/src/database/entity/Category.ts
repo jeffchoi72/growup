@@ -1,13 +1,10 @@
-import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, ManyToMany, PrimaryColumn } from 'typeorm';
 
 import { CurationPost } from '.';
 
 @Entity({ name: 'categories' })
 class Category {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
-
-  @Column({ name: 'name' })
+  @PrimaryColumn({ name: 'name' })
   name: string;
 
   @ManyToMany(type => CurationPost, curationPost => curationPost.categories)

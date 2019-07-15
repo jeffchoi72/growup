@@ -18,7 +18,7 @@ async function connectDatabase() {
       entities: [__dirname + '/entity/*{.ts,.js}'],
       timezone: 'Asia/Seoul',
       extra: { max: 2, min: 1 },
-      synchronize: false,
+      synchronize: true,
       logging: true
     };
 
