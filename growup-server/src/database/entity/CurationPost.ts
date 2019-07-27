@@ -18,7 +18,7 @@ class CurationPost {
   thumbnail: string;
 
   @Column({ name: 'post_url' })
-  postUrl: string;
+  postURL: string;
 
   @ManyToOne(type => Author, author => author.id)
   @JoinColumn({ name: 'fk_author_id' })

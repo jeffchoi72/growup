@@ -16,14 +16,14 @@ const CurationPost: React.FC<Props> = ({ curationPost }) => {
     title,
     content,
     thumbnail,
-    postUrl,
+    postURL,
     author,
     categories
   } = curationPost;
 
   return (
     <Container>
-      <Link href={postUrl} target="_blank">
+      <Link href={postURL} target="_blank">
         <Image src={thumbnail} />
         <Figure>
           <Heading2 fontWeight="bold">{title}</Heading2>
@@ -71,7 +71,8 @@ const Link = styled.a`
 
 const Image = styled.img`
   width: 100%;
-  height: auto;
+  /* height: auto; */
+  height: 220px;
 `;
 
 const Figure = styled.div`

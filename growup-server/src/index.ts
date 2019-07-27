@@ -1,8 +1,8 @@
+import Server from './server';
+
 require('dotenv').config();
 
 const { PORT } = process.env;
-
-import Server from './server';
 
 try {
   const server = new Server();

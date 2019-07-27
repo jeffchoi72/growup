@@ -7,5 +7,6 @@ const router = new Router();
 const ctrl = Container.get(CurationPostCtrl);
 
 router.get('/', ctrl.getPosts);
+router.post('/', ctrl.savePost);
 
 export default router;

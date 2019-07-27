@@ -30,6 +30,28 @@ class CurationPostController {
       };
     }
   };
+
+  savePost = async (context: Context) => {
+    try {
+      const { posts } = context.request.body;
+
+      const addedPosts = await this.curationPostService.addPosts(posts);
+
+      context.status = 200;
+      context.body = {
+        code: 'SUCCESS',
+        message: '성공',
+        data: addedPosts
+      };
+    } catch (error) {
+      context.status = 500;
+      context.body = {
+        code: 'SERVER_ERROR',
+        message: '서버 에러',
+        data: null
+      };
+    }
+  };
 }
 
 export default CurationPostController;
