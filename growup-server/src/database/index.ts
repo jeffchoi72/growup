@@ -2,10 +2,9 @@ import 'reflect-metadata';
 
 import { ConnectionOptions, createConnection } from 'typeorm';
 
-const { DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_NAME } = process.env;
-
 async function connectDatabase() {
   try {
+    const { DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_NAME } = process.env;
     console.log(`Connecting database host: ${DATABASE_HOST}`);
 
     const options: ConnectionOptions = {
