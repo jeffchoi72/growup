@@ -10,6 +10,7 @@
     "prod": "yarn build && yarn start"
   },
   "dependencies": {
+    "axios": "^0.19.0",
     "nodemon": "^1.19.1",
     "puppeteer": "^1.18.1",
     "ts-node": "^8.3.0"
