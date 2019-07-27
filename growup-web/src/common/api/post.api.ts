@@ -16,7 +16,7 @@ export interface CurationPostType {
   title: string;
   content: string;
   thumbnail: string;
-  postUrl: string;
+  postURL: string;
   author: AuthorType;
   categories: CategoryType[];
 }
@@ -26,7 +26,7 @@ class PostApi {
     return baseAxios.get("/curation-posts", {
       params: {
         offset: 0,
-        limit: 5
+        limit: 10000
       }
     });
   };
