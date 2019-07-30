@@ -1,10 +1,12 @@
 import { Context } from 'koa';
 import * as Router from 'koa-router';
 
+import authRouter from './auth.router';
 import curationPostRouter from './curationPost.router';
 
 const rootRouter: Router = new Router();
 
+rootRouter.use('/auth', authRouter.routes());
 rootRouter.use('/curation-posts', curationPostRouter.routes());
 
 rootRouter.all('*', (ctx: Context) => {

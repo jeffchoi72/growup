@@ -1,3 +1,4 @@
+import AuthCtrl from './auth.ctrl';
 import CurationPostCtrl from './curationPost.ctrl';
 
-export { CurationPostCtrl };
+export { AuthCtrl, CurationPostCtrl };
