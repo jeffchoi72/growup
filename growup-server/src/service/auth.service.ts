@@ -1,35 +1,12 @@
 import { Service } from 'typedi';
-import { getCustomRepository } from 'typeorm';
 
 import User from '../database/entity/User';
-import UserRepository from '../database/repository/User.repo';
-import { encryptPassword } from '../library/encrypt';
 import { generateAuthToken } from '../library/token/auth.token';
+import UserService from './user.service';
 
 @Service()
 class AuthService {
-  public async isExistedEmail(email: string) {
-    const userRepo = getCustomRepository(UserRepository);
-
-    const user = userRepo.findOne({ where: { email } });
-
-    if (user) {
-      return true;
-    }
-
-    return false;
-  }
-
-  public async addUser(email: string, password: string) {
-    const userRepo = getCustomRepository(UserRepository);
-
-    const user: Partial<User> = {
-      email,
-      password: encryptPassword(password)
-    };
-
-    return userRepo.addUser(user);
-  }
+  constructor(private userService: UserService) {}
 
   public async getAuthToken(user: User) {
     const { id, email } = user;
@@ -43,9 +20,7 @@ class AuthService {
   }
 
   public async getUserAuth(email: string, password: string) {
-    const userRepo = getCustomRepository(UserRepository);
-
-    const user = await userRepo.findOne({ email, password: encryptPassword(password) });
+    const user = await this.userService.getUserByEmailAndPassword(email, password);
 
     if (!user) {
       return null;

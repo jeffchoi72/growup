@@ -1,3 +1,4 @@
 import CurationPostRepo from './CurationPost.repo';
+import UserRepo from './User.repo';
 
-export { CurationPostRepo };
+export { UserRepo, CurationPostRepo };
