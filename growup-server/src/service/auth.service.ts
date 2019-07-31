@@ -41,6 +41,25 @@ class AuthService {
 
     return generateAuthToken(payload);
   }
+
+  public async getUserAuth(email: string, password: string) {
+    const userRepo = getCustomRepository(UserRepository);
+
+    const user = await userRepo.findOne({ email, password: encryptPassword(password) });
+
+    if (!user) {
+      return null;
+    }
+
+    delete user.password;
+
+    const authToken = await this.getAuthToken(user);
+
+    return {
+      user,
+      authToken
+    };
+  }
 }
 
 export default AuthService;
