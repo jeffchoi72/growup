@@ -24,8 +24,9 @@ class AuthController {
     const isValid = await schema.isValid(context.request.body);
 
     if (!isValid) {
+      context.status = 400;
       context.body = {
-        status: 400,
+        code: 'INVALID_REQUEST_DATA',
         message: '요청 데이터가 올바르지 않습니다',
         data: null
       };
@@ -37,8 +38,9 @@ class AuthController {
     const userAuth = await this.authService.getUserAuth(email, password);
 
     if (!userAuth) {
+      context.status = 404;
       context.body = {
-        status: 401,
+        code: 'NOT_FOUND',
         message: '해당 이메일과 비밀번호로 계정이 조회되지 않습니다',
         data: null
       };
@@ -46,8 +48,9 @@ class AuthController {
       return;
     }
 
+    context.status = 200;
     context.body = {
-      status: 200,
+      code: 'SUCCESS',
       message: '성공',
       data: userAuth
     };
@@ -69,7 +72,7 @@ class AuthController {
 
     if (!isValid) {
       context.body = {
-        status: 400,
+        code: 'INVALID_REQUEST_DATA',
         message: '요청 데이터가 올바르지 않습니다',
         data: null
       };
@@ -81,8 +84,9 @@ class AuthController {
     const existedEmail = await this.userService.isExistedEmail(email);
 
     if (existedEmail) {
+      context.status = 409;
       context.body = {
-        status: 409,
+        code: 'EXISTS_EMAIL',
         message: '해당 이메일로 계정이 존재합니다',
         data: null
       };
@@ -95,8 +99,9 @@ class AuthController {
 
     const authToken = await this.authService.getAuthToken(user);
 
+    context.status = 200;
     context.body = {
-      status: 200,
+      code: 'SUCCESS',
       message: '성공',
       data: {
         user,
