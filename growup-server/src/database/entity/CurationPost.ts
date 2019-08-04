@@ -1,4 +1,14 @@
-import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 import { Category } from '.';
 import Author from './Author';
@@ -27,6 +37,12 @@ class CurationPost {
   @ManyToMany(type => Category, category => category.name)
   @JoinTable({ name: 'curation_posts_categories' })
   categories: Category[];
+
+  @CreateDateColumn({ name: 'created_date' })
+  createdDate: Date;
+
+  @UpdateDateColumn({ name: 'updated_date' })
+  updatedDate: Date;
 }
 
 export default CurationPost;
