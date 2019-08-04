@@ -3,6 +3,7 @@ import { DeepPartial, getCustomRepository } from 'typeorm';
 
 import { Author, Category } from '../database/entity';
 import { CurationPostRepo } from '../database/repository';
+import { CurationPostFilter } from '../database/repository/CurationPost.repo';
 
 interface CurationPost {
   postURL?: string;
@@ -15,10 +16,15 @@ interface CurationPost {
 
 @Service()
 class CurationPostService {
-  async getPosts(offset: number, limit: number) {
+  async getPosts(offset: number, limit: number, author?: string) {
+    const filter: CurationPostFilter = {};
     const curationPostRepo = getCustomRepository(CurationPostRepo);
 
-    const posts = await curationPostRepo.findAll(offset, limit);
+    if (author) {
+      filter.author = author;
+    }
+
+    const posts = await curationPostRepo.findAll(offset, limit, filter);
 
     return posts;
   }

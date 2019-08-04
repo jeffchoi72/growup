@@ -7,11 +7,11 @@ import { CurationPostService } from '../service';
 class CurationPostController {
   constructor(private curationPostService: CurationPostService) {}
 
-  getPosts = async (context: Context) => {
+  public getPosts = async (context: Context) => {
     try {
-      const { offset = 0, limit = 10 } = context.query;
+      const { offset = 0, limit = 10, author } = context.query;
 
-      const posts = await this.curationPostService.getPosts(offset, limit);
+      const posts = await this.curationPostService.getPosts(offset, limit, author);
 
       context.status = 200;
       context.body = {
@@ -31,7 +31,7 @@ class CurationPostController {
     }
   };
 
-  savePost = async (context: Context) => {
+  public savePost = async (context: Context) => {
     try {
       const { posts } = context.request.body;
 
