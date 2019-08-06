@@ -6,12 +6,14 @@ import {
   JoinTable,
   ManyToMany,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
 import { Category } from '.';
 import Author from './Author';
+import LibraryContent from './LibraryContent';
 
 @Entity({ name: 'curation_posts' })
 class CurationPost {
@@ -43,6 +45,9 @@ class CurationPost {
 
   @UpdateDateColumn({ name: 'updated_date' })
   updatedDate: Date;
+
+  @OneToMany(type => LibraryContent, libraryContent => libraryContent.curationPost)
+  libraryContents: LibraryContent[];
 }
 
 export default CurationPost;

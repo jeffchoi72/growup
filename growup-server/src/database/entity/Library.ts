@@ -1,5 +1,15 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
+import LibraryContent from './LibraryContent';
 import User from './User';
 
 @Entity({ name: 'libraries' })
@@ -22,6 +32,9 @@ class Library {
   @ManyToOne(type => User, user => user.id)
   @JoinColumn({ name: 'fk_user_id' })
   user: User;
+
+  @OneToMany(type => LibraryContent, libraryContent => libraryContent.library)
+  libraryContents: LibraryContent[];
 }
 
 export default Library;
