@@ -14,7 +14,7 @@ class Author {
   iconUrl: string;
 
   @OneToMany(type => CurationPost, curationPost => curationPost.author, { cascade: true })
-  curationPost: CurationPost;
+  curationPosts: CurationPost[];
 }
 
 export default Author;
