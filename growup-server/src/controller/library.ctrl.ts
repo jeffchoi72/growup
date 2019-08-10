@@ -7,6 +7,15 @@ class LibraryController {
     context.status = 200;
     context.body = 'Hello';
   };
+
+  public getLibraries = async (context: Context) => {
+    context.status = 200;
+    context.body = {
+      code: 'SUCCESS',
+      message: '성공',
+      data: null
+    };
+  };
 }
 
 export default LibraryController;
