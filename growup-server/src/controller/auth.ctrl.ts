@@ -3,11 +3,16 @@ import { Service } from 'typedi';
 import * as yup from 'yup';
 
 import { AuthService } from '../service';
+import LibraryService from '../service/library.service';
 import UserService from '../service/user.service';
 
 @Service()
 class AuthController {
-  constructor(private authService: AuthService, private userService: UserService) {}
+  constructor(
+    private authService: AuthService,
+    private userService: UserService,
+    private libraryService: LibraryService
+  ) {}
 
   public emailSignIn = async (context: Context) => {
     const schema = yup.object().shape({
@@ -82,6 +87,7 @@ class AuthController {
     const { email, password } = context.request.body;
 
     const existedEmail = await this.userService.isExistedEmail(email);
+    console.log('existedEmail: ', existedEmail);
 
     if (existedEmail) {
       context.status = 409;
@@ -94,6 +100,7 @@ class AuthController {
     }
 
     const user = await this.userService.addUser(email, password);
+    await this.libraryService.addLibrary(user);
 
     delete user.password;
 

@@ -10,7 +10,7 @@ class UserService {
   public async isExistedEmail(email: string) {
     const userRepo = getCustomRepository(UserRepo);
 
-    const user = userRepo.findOne({ where: { email } });
+    const user = await userRepo.findOne({ where: { email } });
 
     if (user) {
       return true;
