@@ -32,6 +32,38 @@ class LibraryService {
 
     return library;
   };
+
+  public addLibraryContent = async (curationPostId: string, userId: string) => {
+    const libraryRepo = getCustomRepository(LibraryRepo);
+    const libraryContentRepo = getCustomRepository(LibraryContentRepo);
+
+    const library = await libraryRepo.findOne({ user: { id: userId } });
+
+    const libraryContent = await libraryContentRepo.save({
+      library,
+      curationPost: { id: curationPostId }
+    });
+
+    return libraryContent;
+  };
+
+  public isExistedLibraryContentByUser = async (curationPostId: string, userId: string) => {
+    const libraryRepo = getCustomRepository(LibraryRepo);
+    const libraryContentRepo = getCustomRepository(LibraryContentRepo);
+
+    const library = await libraryRepo.findOne({ user: { id: userId } });
+
+    const libraryContent = await libraryContentRepo.findOne({
+      library,
+      curationPost: { id: curationPostId }
+    });
+
+    if (libraryContent) {
+      return true;
+    }
+
+    return false;
+  };
 }
 
 export default LibraryService;
