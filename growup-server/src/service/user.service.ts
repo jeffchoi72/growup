@@ -7,6 +7,12 @@ import { encryptPassword } from '../library/encrypt';
 
 @Service()
 class UserService {
+  public getUserById = async (userId: string) => {
+    const userRepo = getCustomRepository(UserRepo);
+
+    return userRepo.findOne({ where: { id: userId } });
+  };
+
   public async isExistedEmail(email: string) {
     const userRepo = getCustomRepository(UserRepo);
 
