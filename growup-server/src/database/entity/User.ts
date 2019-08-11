@@ -16,7 +16,7 @@ class User {
   @Column({ name: 'name', nullable: true })
   name: string;
 
-  @Column({ name: 'profile_image_url', nullable: true })
+  @Column({ name: 'profile_image_url', length: 500, nullable: true })
   profileImageURL: string;
 
   @CreateDateColumn({ name: 'created_date' })

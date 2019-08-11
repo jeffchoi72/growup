@@ -41,6 +41,12 @@ class UserService {
 
     return userRepo.addUser(user);
   }
+
+  public updateUserProfile = async (nextUser: Partial<User>, userId: string) => {
+    const userRepo = getCustomRepository(UserRepo);
+
+    return userRepo.update({ id: userId }, nextUser);
+  };
 }
 
 export default UserService;
