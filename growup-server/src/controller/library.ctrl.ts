@@ -85,6 +85,56 @@ class LibraryController {
       };
     }
   };
+
+  public deleteLibraryContent = async (context: AuthContext) => {
+    try {
+      const { libraryContentId } = context.params;
+      const { id: userId } = context.token;
+
+      const isLibraryContentOwner = await this.libraryService.isLibraryContentOwner(
+        libraryContentId,
+        userId
+      );
+
+      if (!isLibraryContentOwner) {
+        context.status = 403;
+        context.body = {
+          code: 'FORBIDDEN_DELETE_LIBRARY_CONTENT',
+          message: '서재 콘텐츠를 삭제할 권한이 없습니다',
+          data: null
+        };
+        return;
+      }
+
+      await this.libraryService.deleteLibraryContent(libraryContentId);
+
+      context.status = 200;
+      context.body = {
+        code: 'SUCCESS',
+        message: '성공',
+        data: {
+          libraryContentId
+        }
+      };
+    } catch (error) {
+      if (error.message === 'Not selected libraryContent') {
+        context.status = 404;
+        context.body = {
+          code: 'NOT_FOUND_LIBRARY_CONTENT',
+          message: '삭제할 서재 콘텐츠가 조회되지 않습니다',
+          data: null
+        };
+        return;
+      }
+
+      context.status = 500;
+      context.body = {
+        code: 'SERVER_ERROR',
+        message: '서버 에러',
+        data: null
+      };
+    }
+  };
 }
 
 export default LibraryController;

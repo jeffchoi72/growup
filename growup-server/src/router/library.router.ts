@@ -8,6 +8,6 @@ const ctrl = Container.get(LibraryCtrl);
 
 router.get('/me/contents', ctrl.getLibraryContents);
 router.post('/me/contents', ctrl.addLibraryContent);
-router.delete('/me/contents/:contentId', ctrl.test);
+router.delete('/me/contents/:libraryContentId', ctrl.deleteLibraryContent);
 
 export default router;

@@ -64,6 +64,17 @@ class LibraryService {
 
     return false;
   };
+
+  public isLibraryContentOwner = async (libraryContentId: string, userId: string) => {
+    const libraryContentRepo = getCustomRepository(LibraryContentRepo);
+    return libraryContentRepo.isContentOwner(libraryContentId, userId);
+  };
+
+  public deleteLibraryContent = async (librarycontentId: string) => {
+    const libraryContentRepo = getCustomRepository(LibraryContentRepo);
+
+    return libraryContentRepo.delete({ id: librarycontentId });
+  };
 }
 
 export default LibraryService;
