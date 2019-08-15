@@ -9,8 +9,10 @@ import Heading1 from '../../../growup-ui/typography/Heading1';
 const Header: React.FC = () => {
   return (
     <Container>
-      <Logo color={Colors.brandGreen50} fontWeight="bold">
-        ㄱㄹㅇ
+      <Logo to="/">
+        <Heading1 color={Colors.brandGreen50} fontWeight="bold">
+          ㄱㄹㅇ
+        </Heading1>
       </Logo>
       <NavigationContainer>
         <NavigationItem to="/login">
@@ -38,7 +40,9 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const Logo = styled(Heading1)``;
+const Logo = styled(Link)`
+  text-decoration: none;
+`;
 
 const NavigationContainer = styled.div`
   display: flex;
