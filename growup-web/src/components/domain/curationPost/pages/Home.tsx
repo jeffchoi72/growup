@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Logo from '../../../common/components/Logo';
-import Navigation, { NavigationDirection } from '../../../common/components/Navigation';
-import { NAVIGATION_ITEMS } from '../../../common/components/Navigation/constants';
-import ServiceIntro from '../../../common/components/ServiceIntro';
-import Heading1 from '../../../growup-ui/typography/Heading1';
+import Logo from '../../../../common/components/Logo';
+import Navigation, { NavigationDirection } from '../../../../common/components/Navigation';
+import { NAVIGATION_ITEMS } from '../../../../common/components/Navigation/constants';
+import ServiceIntro from '../../../../common/components/ServiceIntro';
+import Heading1 from '../../../../growup-ui/typography/Heading1';
 import CurationPostsContainer from '../container/CurationPostsContainer';
 
 const HomePage: React.FC = () => {

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import RootRouter from './domain/RootRouter';
+import RootRouter from './pages';
 import GlobalStyle from './styles/globalStyles';
 
 const Root: React.FC = () => {

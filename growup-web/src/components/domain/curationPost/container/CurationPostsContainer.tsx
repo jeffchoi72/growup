@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import { postApi } from '../../../common/api';
-import { CurationPostType } from '../../../common/api/post.api';
+import { postApi } from '../../../../common/api';
+import { CurationPostType } from '../../../../common/api/post.api';
 import CurationPost from '../components/CurationPost';
 
 const CurationPostsContainer: React.FC = () => {
