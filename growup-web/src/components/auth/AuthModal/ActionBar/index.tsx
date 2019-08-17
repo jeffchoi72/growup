@@ -2,10 +2,14 @@ import React from 'react';
 import { MdClear } from 'react-icons/md';
 import styled from 'styled-components';
 
-const ActionBar = () => {
+interface Props {
+  handleClickCloseIcon: () => void;
+}
+
+const ActionBar: React.FC<Props> = ({ handleClickCloseIcon }) => {
   return (
     <Container>
-      <CloseIcon size={24} />
+      <CloseIcon size={24} onClick={handleClickCloseIcon} />
     </Container>
   );
 };

@@ -14,7 +14,11 @@ export enum AuthMode {
   Register = "Register"
 }
 
-const AuthModal: React.FC = () => {
+interface Props {
+  hideModal: () => void;
+}
+
+const AuthModal: React.FC<Props> = ({ hideModal }) => {
   const [authMode, setAuthMode] = useState(AuthMode.Login);
 
   const handleClickAuthMode = () => {
@@ -26,21 +30,26 @@ const AuthModal: React.FC = () => {
   };
 
   return (
-    <BackgroundContainer>
+    <>
       <Container>
-        <ActionBar />
+        <ActionBar handleClickCloseIcon={hideModal} />
         <TitleContainer>
           <Title color={Colors.slate50}>ㄱㄹㅇ</Title>
-          <Description>바쁜 당신을 위한 콘텐츠 큐레이션 서비스</Description>
+          <Description>
+            {authMode === AuthMode.Login
+              ? "바쁜 당신을 위한 콘텐츠 큐레이션 서비스"
+              : "보고 싶은 콘텐츠를 무제한으로 서재에 등록해보자!"}
+          </Description>
         </TitleContainer>
         {authMode === AuthMode.Login ? <LoginForm /> : <RegisterForm />}
         <AuthModeTextButtonWrapper onClick={handleClickAuthMode}>
           <AuthModeTextButton color={Colors.slate30}>
-            회원가입하기
+            {authMode === AuthMode.Login ? "회원가입하기" : "로그인하기"}
           </AuthModeTextButton>
         </AuthModeTextButtonWrapper>
       </Container>
-    </BackgroundContainer>
+      <BackgroundContainer onClick={hideModal} />
+    </>
   );
 };
 
@@ -50,8 +59,13 @@ const Container = styled.div`
   background-color: white;
   border-radius: 4px;
   padding: 24px;
-  margin: 0 auto;
   z-index: 100;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
 
   @media (max-width: 1024px) {
     width: 100%;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -8,6 +8,8 @@ import Body1 from '../../../growup-ui/typography/Body1';
 import Heading1 from '../../../growup-ui/typography/Heading1';
 
 const Header: React.FC = () => {
+  const [isVisibleAuthModal, setVisibleAuthModal] = useState(false);
+
   return (
     <>
       <Container>
@@ -17,7 +19,10 @@ const Header: React.FC = () => {
           </Heading1>
         </Logo>
         <NavigationContainer>
-          <NavigationItem to="/login">
+          <NavigationItem
+            to="/"
+            onClick={() => setVisibleAuthModal(!isVisibleAuthModal)}
+          >
             <Body1 color={Colors.slate50}>로그인하기</Body1>
           </NavigationItem>
           <NavigationItem to="/login">
@@ -31,7 +36,9 @@ const Header: React.FC = () => {
           </NavigationItem>
         </NavigationContainer>
       </Container>
-      <AuthModal />
+      {isVisibleAuthModal ? (
+        <AuthModal hideModal={() => setVisibleAuthModal(!isVisibleAuthModal)} />
+      ) : null}
     </>
   );
 };
