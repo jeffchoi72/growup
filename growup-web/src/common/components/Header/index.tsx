@@ -2,33 +2,37 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+import AuthModal from '../../../components/auth/AuthModal';
 import * as Colors from '../../../growup-ui/Colors';
 import Body1 from '../../../growup-ui/typography/Body1';
 import Heading1 from '../../../growup-ui/typography/Heading1';
 
 const Header: React.FC = () => {
   return (
-    <Container>
-      <Logo to="/">
-        <Heading1 color={Colors.brandGreen50} fontWeight="bold">
-          ㄱㄹㅇ
-        </Heading1>
-      </Logo>
-      <NavigationContainer>
-        <NavigationItem to="/login">
-          <Body1 color={Colors.slate50}>로그인하기</Body1>
-        </NavigationItem>
-        <NavigationItem to="/login">
-          <Body1 color={Colors.slate50}>내 서재</Body1>
-        </NavigationItem>
-        <NavigationItem to="/me">
-          <ProfileContainer>
-            <ProfileImage />
-            <Body1 color={Colors.slate50}>최영훈</Body1>
-          </ProfileContainer>
-        </NavigationItem>
-      </NavigationContainer>
-    </Container>
+    <>
+      <Container>
+        <Logo to="/">
+          <Heading1 color={Colors.brandGreen50} fontWeight="bold">
+            ㄱㄹㅇ
+          </Heading1>
+        </Logo>
+        <NavigationContainer>
+          <NavigationItem to="/login">
+            <Body1 color={Colors.slate50}>로그인하기</Body1>
+          </NavigationItem>
+          <NavigationItem to="/login">
+            <Body1 color={Colors.slate50}>내 서재</Body1>
+          </NavigationItem>
+          <NavigationItem to="/me">
+            <ProfileContainer>
+              <ProfileImage />
+              <Body1 color={Colors.slate50}>최영훈</Body1>
+            </ProfileContainer>
+          </NavigationItem>
+        </NavigationContainer>
+      </Container>
+      <AuthModal />
+    </>
   );
 };
 
