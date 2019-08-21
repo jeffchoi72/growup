@@ -1,20 +1,53 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { AuthFormValueError } from '../../../../containers/LoginFormContainer';
 import CaptionInput, { InputType } from '../CaptionInput';
 
-const LoginForm: React.FC = () => {
+interface Props {
+  email: string;
+  handleChangeEmail: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  password: string;
+  handleChangePassword: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSubmit: (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => void;
+  emailError: AuthFormValueError;
+  passwordError: AuthFormValueError;
+}
+
+const LoginForm: React.FC<Props> = ({
+  email,
+  handleChangeEmail,
+  password,
+  handleChangePassword,
+  handleSubmit,
+  emailError,
+  passwordError
+}) => {
   return (
     <Container>
       <InputContainer>
         <CaptionInputWrapper marginBottom={8}>
-          <CaptionInput type={InputType.text} captionText="이메일" />
+          <CaptionInput
+            type={InputType.text}
+            captionText="이메일"
+            value={email}
+            onChange={handleChangeEmail}
+            errorObject={emailError}
+          />
         </CaptionInputWrapper>
         <CaptionInputWrapper marginBottom={0}>
-          <CaptionInput type={InputType.password} captionText="비밀번호" />
+          <CaptionInput
+            type={InputType.password}
+            captionText="비밀번호"
+            value={password}
+            onChange={handleChangePassword}
+            errorObject={passwordError}
+          />
         </CaptionInputWrapper>
       </InputContainer>
-      <SubmitButton>로그인</SubmitButton>
+      <SubmitButton onClick={handleSubmit}>로그인</SubmitButton>
     </Container>
   );
 };

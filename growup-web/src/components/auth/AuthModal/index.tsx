@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+import LoginFormContainer from '../../../containers/LoginFormContainer';
 import * as Colors from '../../../growup-ui/Colors';
 import Body2 from '../../../growup-ui/typography/Body2';
 import Display2 from '../../../growup-ui/typography/Display2';
 import Heading2 from '../../../growup-ui/typography/Heading2';
 import ActionBar from './ActionBar';
-import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 
 export enum AuthMode {
@@ -41,7 +41,11 @@ const AuthModal: React.FC<Props> = ({ hideModal }) => {
               : "보고 싶은 콘텐츠를 무제한으로 서재에 등록해보자!"}
           </Description>
         </TitleContainer>
-        {authMode === AuthMode.Login ? <LoginForm /> : <RegisterForm />}
+        {authMode === AuthMode.Login ? (
+          <LoginFormContainer />
+        ) : (
+          <RegisterForm />
+        )}
         <AuthModeTextButtonWrapper onClick={handleClickAuthMode}>
           <AuthModeTextButton color={Colors.slate30}>
             {authMode === AuthMode.Login ? "회원가입하기" : "로그인하기"}
