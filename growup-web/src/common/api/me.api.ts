@@ -2,23 +2,25 @@ import { AxiosResponse } from 'axios';
 
 import { baseAxios } from './axios';
 
-interface Response {
+export interface MyProfile {
+  id: string;
+  email: string;
+  name: string | null;
+  profileImageURL: string | null;
+}
+
+export interface MeResponse {
   code: string;
   message: string;
   data: {
-    myUser: {
-      id: string;
-      email: string;
-      name: string | null;
-      profileImageURL: string | null;
-    };
+    myUser: MyProfile;
   };
 }
 
 class MeApi {
   public requestMyProfile = async (authToken: string) => {
     try {
-      return baseAxios.get<Response>("/me", {
+      return baseAxios.get<MeResponse>("/me", {
         headers: {
           "growup-user-token": authToken
         }

@@ -1,5 +1,6 @@
 import { Action, createAction } from 'redux-actions';
 
+import { MyProfile } from '../../common/api/me.api';
 import { FETCH_FAIL_SESSION, FETCH_SESSION, FETCH_SUCESS_SESSION } from './constants';
 
 /**
@@ -10,12 +11,28 @@ import { FETCH_FAIL_SESSION, FETCH_SESSION, FETCH_SUCESS_SESSION } from './const
   클라이언트가 나에 프로필 정보 요청에 실패를 읃답 받았다. ( FAIL ),
  */
 
-export type FetchSession = Action<SessionPayload>;
+export type FetchSession = Action<FetchSessionPayload>;
 
-export interface SessionPayload {
+export interface FetchSessionPayload {
   authTokenId: string;
 }
 
-export const fetchSession = createAction<SessionPayload>(FETCH_SESSION);
-export const fetchSuccessSession = createAction<{}>(FETCH_SUCESS_SESSION);
-export const fetchFailSession = createAction<{}>(FETCH_FAIL_SESSION);
+export interface FetchSuccessSessionPayload {
+  message: string;
+  myProfile: MyProfile;
+  authTokenId: string;
+}
+
+export interface FetchFailSessionPayload {
+  message: string;
+}
+
+export const fetchSession = createAction<FetchSessionPayload>(FETCH_SESSION);
+
+export const fetchSuccessSession = createAction<FetchSuccessSessionPayload>(
+  FETCH_SUCESS_SESSION
+);
+
+export const fetchFailSession = createAction<FetchFailSessionPayload>(
+  FETCH_FAIL_SESSION
+);

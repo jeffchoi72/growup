@@ -13,9 +13,9 @@ const sagaMiddleware = createSagaMiddleware();
 
 const middlewares = [sagaMiddleware];
 
-const store = (preloadedState?: any) => {
+export default (preloadedState?: any) => {
   const store = createStore(
-    reducers,
+    reducers as any,
     preloadedState,
     composeEnhancers(applyMiddleware(...middlewares))
   );
@@ -24,5 +24,3 @@ const store = (preloadedState?: any) => {
 
   return store;
 };
-
-export default store;
