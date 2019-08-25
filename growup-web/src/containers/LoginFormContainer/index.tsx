@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as yup from 'yup';
 
 import { authApi } from '../../common/api';
+import browserStore from '../../common/utils/browserStore';
 import LoginForm from '../../components/auth/AuthModal/LoginForm';
 import { AppState } from '../../store/reducers';
 import { sessionActions } from '../../store/session';
@@ -19,12 +20,15 @@ interface StateProps {
 }
 
 interface DispatchProps {
-  fetchSession: typeof sessionActions.fetchSession;
+  fetchSuccessSession: typeof sessionActions.fetchSuccessSession;
 }
 
 type Props = OwnProps & StateProps & DispatchProps;
 
-const LoginFormContainer: React.FC<Props> = ({ session, fetchSession }) => {
+const LoginFormContainer: React.FC<Props> = ({
+  session,
+  fetchSuccessSession
+}) => {
   const [email, setEmail] = useState<string>("");
   const [emailError, setEmailError] = useState<AuthFormValueError>({
     error: false,
@@ -82,9 +86,14 @@ const LoginFormContainer: React.FC<Props> = ({ session, fetchSession }) => {
 
     switch (response.status) {
       case 200: // 성공적으로 로그인 되었을 때
-        // utils/browserStore.setAuthToken을 한다.
-        // redux 전체 상태로 만들어 버린다.
-        fetchSession({ authTokenId: response.data.data!.authToken });
+        const { message } = response.data;
+        const { authToken, user } = response.data.data!;
+        browserStore.set("auth-token", authToken);
+        fetchSuccessSession({
+          message,
+          authTokenId: authToken,
+          myProfile: user
+        });
         break;
       case 400: // 요청 데이터가 올바르지 않을때
         alert("요청한 데이터가 올바르지 않습니다.");
@@ -117,7 +126,7 @@ const mapStateToProps = (state: AppState) => {
 };
 
 const mapDispatchToProps = {
-  fetchSession: sessionActions.fetchSession
+  fetchSuccessSession: sessionActions.fetchSuccessSession
 };
 
 export default connect(
