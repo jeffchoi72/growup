@@ -5,7 +5,7 @@ const BrowserStore = () => {
     set: (key: string, object: any) => {
       store[key] = typeof object === "string" ? object : JSON.stringify(object);
     },
-    get: (key: string) => {
+    get: (key: string): string | null => {
       if (!store[key]) {
         return null;
       }

@@ -14,7 +14,9 @@ export interface AuthFormValueError {
   message: string;
 }
 
-interface OwnProps {}
+interface OwnProps {
+  hideModal: () => void;
+}
 interface StateProps {
   session: SessionState;
 }
@@ -26,6 +28,7 @@ interface DispatchProps {
 type Props = OwnProps & StateProps & DispatchProps;
 
 const LoginFormContainer: React.FC<Props> = ({
+  hideModal,
   session,
   fetchSuccessSession
 }) => {
@@ -94,6 +97,7 @@ const LoginFormContainer: React.FC<Props> = ({
           authTokenId: authToken,
           myProfile: user
         });
+        hideModal();
         break;
       case 400: // 요청 데이터가 올바르지 않을때
         alert("요청한 데이터가 올바르지 않습니다.");
@@ -129,7 +133,7 @@ const mapDispatchToProps = {
   fetchSuccessSession: sessionActions.fetchSuccessSession
 };
 
-export default connect(
+export default connect<StateProps, DispatchProps, OwnProps, AppState>(
   mapStateToProps,
   mapDispatchToProps
 )(LoginFormContainer);

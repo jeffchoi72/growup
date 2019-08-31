@@ -1,40 +1,49 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { createSelector } from 'reselect';
 import styled from 'styled-components';
 
 import AuthModal from '../../../components/auth/AuthModal';
-import * as Colors from '../../../growup-ui/Colors';
-import Body1 from '../../../growup-ui/typography/Body1';
-import Heading1 from '../../../growup-ui/typography/Heading1';
+import { AppState } from '../../../store/reducers';
+import { fetchSession } from '../../../store/session/actions';
+import { Status } from '../../../store/session/reducer';
+import browserStore from '../../utils/browserStore';
+import Logo from './Logo';
+import Navigation from './Navigation';
+
+const selectSession = createSelector(
+  (state: AppState) => state.session,
+  session => session
+);
 
 const Header: React.FC = () => {
   const [isVisibleAuthModal, setVisibleAuthModal] = useState(false);
+  const dispatch = useDispatch();
+  const session = useSelector(selectSession);
+
+  useEffect(() => {
+    const authTokenId = browserStore.get("auth-token");
+
+    if (!authTokenId) {
+      return;
+    }
+
+    dispatch(fetchSession({ authTokenId }));
+  }, [dispatch]);
+
+  const isLoading = session.status === Status.PENDING;
+  const isLoggedIn = session.status === Status.SUCCESS;
 
   return (
     <>
       <Container>
-        <Logo to="/">
-          <Heading1 color={Colors.brandGreen50} fontWeight="bold">
-            ㄱㄹㅇ
-          </Heading1>
-        </Logo>
-        <NavigationContainer>
-          <NavigationItem
-            to="/"
-            onClick={() => setVisibleAuthModal(!isVisibleAuthModal)}
-          >
-            <Body1 color={Colors.slate50}>로그인하기</Body1>
-          </NavigationItem>
-          <NavigationItem to="/login">
-            <Body1 color={Colors.slate50}>내 서재</Body1>
-          </NavigationItem>
-          <NavigationItem to="/me">
-            <ProfileContainer>
-              <ProfileImage />
-              <Body1 color={Colors.slate50}>최영훈</Body1>
-            </ProfileContainer>
-          </NavigationItem>
-        </NavigationContainer>
+        <Logo />
+        <Navigation
+          isLoading={isLoading}
+          isLoggedIn={isLoggedIn}
+          myProfile={session.myProfile}
+          setVisibleAuthModal={() => setVisibleAuthModal(!isVisibleAuthModal)}
+        />
       </Container>
       {isVisibleAuthModal ? (
         <AuthModal hideModal={() => setVisibleAuthModal(!isVisibleAuthModal)} />
@@ -49,38 +58,6 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-`;
-
-const Logo = styled(Link)`
-  text-decoration: none;
-`;
-
-const NavigationContainer = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const NavigationItem = styled(Link)`
-  text-decoration: none;
-  margin-right: 24px;
-  :last-child {
-    margin-right: 0;
-  }
-`;
-
-const ProfileContainer = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const ProfileImage = styled.div`
-  width: 32px;
-  height: 32px;
-  border-radius: 100%;
-  background-image: url("https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500");
-  background-size: cover;
-  margin-right: 4px;
-  border: 1px solid #e2e2e2;
 `;
 
 export default Header;

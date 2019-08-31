@@ -42,7 +42,7 @@ const AuthModal: React.FC<Props> = ({ hideModal }) => {
           </Description>
         </TitleContainer>
         {authMode === AuthMode.Login ? (
-          <LoginFormContainer />
+          <LoginFormContainer hideModal={hideModal} />
         ) : (
           <RegisterForm />
         )}

@@ -7,6 +7,8 @@ export interface MyProfile {
   email: string;
   name: string | null;
   profileImageURL: string | null;
+  createdDate: Date | null;
+  updatedDate: Date | null;
 }
 
 export interface MeResponse {
