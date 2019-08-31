@@ -1,10 +1,10 @@
+import { MyProfile } from 'common/api/me.api';
+import { Colors } from 'growup-ui';
+import Body1 from 'growup-ui/typography/Body1';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import * as Colors from '../../../../../growup-ui/Colors';
-import Body1 from '../../../../../growup-ui/typography/Body1';
-import { MyProfile } from '../../../../api/me.api';
 import NavigationItem from '../coommon/NavigationItem';
 
 const DEFAULT_PROFILE_URL =

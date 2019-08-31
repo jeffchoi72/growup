@@ -1,13 +1,13 @@
+import browserStore from 'common/utils/browserStore';
+import AuthModal from 'components/auth/AuthModal';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createSelector } from 'reselect';
+import { AppState } from 'store/reducers';
+import { fetchSession } from 'store/session/actions';
+import { Status } from 'store/session/reducer';
 import styled from 'styled-components';
 
-import AuthModal from '../../../components/auth/AuthModal';
-import { AppState } from '../../../store/reducers';
-import { fetchSession } from '../../../store/session/actions';
-import { Status } from '../../../store/session/reducer';
-import browserStore from '../../utils/browserStore';
 import Logo from './Logo';
 import Navigation from './Navigation';
 

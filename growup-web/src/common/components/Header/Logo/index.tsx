@@ -1,9 +1,8 @@
+import { Colors } from 'growup-ui';
+import Heading1 from 'growup-ui/typography/Heading1';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-
-import * as Colors from '../../../../growup-ui/Colors';
-import Heading1 from '../../../../growup-ui/typography/Heading1';
 
 const Logo: React.FC = () => {
   return (

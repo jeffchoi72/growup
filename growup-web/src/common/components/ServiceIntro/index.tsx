@@ -1,9 +1,8 @@
+import { Colors } from 'growup-ui';
+import Body1 from 'growup-ui/typography/Body1';
+import Heading1 from 'growup-ui/typography/Heading1';
 import React from 'react';
 import styled from 'styled-components';
-
-import * as Colors from '../../../growup-ui/Colors';
-import Body1 from '../../../growup-ui/typography/Body1';
-import Heading1 from '../../../growup-ui/typography/Heading1';
 
 const ServiceIntro: React.FC = () => {
   return (

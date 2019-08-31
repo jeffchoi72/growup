@@ -1,9 +1,9 @@
+import Body1 from 'growup-ui/typography/Body1';
 import React from 'react';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 import styled from 'styled-components';
 
 import { NavigationItem } from '..';
-import * as Colors from '../../../../growup-ui/Colors';
-import Body1 from '../../../../growup-ui/typography/Body1';
 
 interface Props {
   item: NavigationItem;

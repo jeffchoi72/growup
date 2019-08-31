@@ -1,7 +1,7 @@
+import { MyProfile } from 'common/api/me.api';
 import React from 'react';
 import styled from 'styled-components';
 
-import { MyProfile } from '../../../api/me.api';
 import AuthNavigation from './AuthNavigation';
 import ProfileNavigation from './ProfileNavigation';
 import SkeletonNavigation from './SkeletonNavigation';

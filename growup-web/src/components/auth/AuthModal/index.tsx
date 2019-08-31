@@ -1,11 +1,11 @@
+import LoginFormContainer from 'containers/LoginFormContainer';
+import { Colors } from 'growup-ui';
+import Body2 from 'growup-ui/typography/Body2';
+import Display2 from 'growup-ui/typography/Display2';
+import Heading2 from 'growup-ui/typography/Heading2';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import LoginFormContainer from '../../../containers/LoginFormContainer';
-import * as Colors from '../../../growup-ui/Colors';
-import Body2 from '../../../growup-ui/typography/Body2';
-import Display2 from '../../../growup-ui/typography/Display2';
-import Heading2 from '../../../growup-ui/typography/Heading2';
 import ActionBar from './ActionBar';
 import RegisterForm from './RegisterForm';
 

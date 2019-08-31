@@ -1,11 +1,10 @@
+import { CurationPostType } from 'common/api/post.api';
+import Body2 from 'growup-ui/typography/Body2';
+import Caption2 from 'growup-ui/typography/Caption2';
+import Heading2 from 'growup-ui/typography/Heading2';
 import React from 'react';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 import styled from 'styled-components';
-
-import { CurationPostType } from '../../../../../common/api/post.api';
-import * as Colors from '../../../../../growup-ui/Colors';
-import Body2 from '../../../../../growup-ui/typography/Body2';
-import Caption2 from '../../../../../growup-ui/typography/Caption2';
-import Heading2 from '../../../../../growup-ui/typography/Heading2';
 
 interface Props {
   curationPost: CurationPostType;

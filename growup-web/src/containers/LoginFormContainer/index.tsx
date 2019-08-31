@@ -1,13 +1,12 @@
+import { authApi } from 'common/api';
+import browserStore from 'common/utils/browserStore';
+import LoginForm from 'components/auth/AuthModal/LoginForm';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { AppState } from 'store/reducers';
+import { sessionActions } from 'store/session';
+import { SessionState } from 'store/session/reducer';
 import * as yup from 'yup';
-
-import { authApi } from '../../common/api';
-import browserStore from '../../common/utils/browserStore';
-import LoginForm from '../../components/auth/AuthModal/LoginForm';
-import { AppState } from '../../store/reducers';
-import { sessionActions } from '../../store/session';
-import { SessionState } from '../../store/session/reducer';
 
 export interface AuthFormValueError {
   error: boolean;
