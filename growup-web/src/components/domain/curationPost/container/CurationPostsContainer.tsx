@@ -10,7 +10,7 @@ const CurationPostsContainer: React.FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await postApi.getPosts();
+      const response = await postApi.getPosts({ limit: 0, offset: 1000 });
 
       if (response.status !== 200) {
         throw Error("error");

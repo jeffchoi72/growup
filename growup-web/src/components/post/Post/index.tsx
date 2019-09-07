@@ -1,3 +1,4 @@
+import { Post as PostType } from 'common/api/post.api';
 import { Colors } from 'growup-ui';
 import React from 'react';
 import styled from 'styled-components';
@@ -8,36 +9,22 @@ import Content from './Content';
 import MyStoreSaveButton from './MyStoreSaveButton';
 import Thumbnail from './Thumbnail';
 
-const TEST_IMAGE =
-  "http://menu.mt.co.kr/ttimes/img/201808/2018080110257725193_23130.png/dims/optimize/";
+interface Props {
+  post: PostType;
+}
 
-const Post: React.FC = () => {
+const Post: React.FC<Props> = ({ post }) => {
+  const { title, content, thumbnail, postURL, author, categories } = post;
+
   return (
     <Container>
-      <Thumbnail thumbnailURL={TEST_IMAGE} />
+      <Link href={postURL} target="_blank">
+        <Thumbnail thumbnailURL={thumbnail} />
+      </Link>
       <Description>
-        <Content
-          title="아마존과 쿠팡의 시대, 오프라인이 생존하려면?"
-          description="아마존으로 대표되는 온라인 상거래가 급성장하면서 오프라인
-            유통업체들이 갈팡질팡하고 있다. 온라인에 올라타기 위해 기존의
-            오프인..."
-        />
-        <CategoryList
-          categories={[
-            {
-              id: "id-1",
-              content: "#비즈니스"
-            },
-            {
-              id: "id-2",
-              content: "#스타트업"
-            }
-          ]}
-        />
-        <AuthorProfile
-          name="T Times"
-          imageURL="http://www.ttimes.co.kr/favicon/apple-icon-180x180.png"
-        />
+        <Content title={title} description={content} />
+        <CategoryList categories={categories} />
+        <AuthorProfile author={author} />
         <MyStoreSaveButton />
       </Description>
     </Container>
@@ -50,7 +37,13 @@ const Container = styled.div`
   width: 100%;
   border-radius: 3px;
   box-shadow: 0px 0px 1px ${Colors.slate10};
-  cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+`;
+
+const Link = styled.a`
+  text-decoration: none;
 `;
 
 const Description = styled.div`

@@ -1,4 +1,4 @@
-import PostList from 'components/post/PostList';
+import PostListContainer from 'containers/PostListContainer';
 import { BreakPoint } from 'growup-ui';
 import React from 'react';
 import styled from 'styled-components';
@@ -10,7 +10,7 @@ const HomePage: React.FC = () => {
     <Container>
       <Header />
       <PostListSection>
-        <PostList />
+        <PostListContainer />
       </PostListSection>
     </Container>
   );

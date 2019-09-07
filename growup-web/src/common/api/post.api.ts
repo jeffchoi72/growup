@@ -21,12 +21,41 @@ export interface CurationPostType {
   categories: CategoryType[];
 }
 
+export interface Author {
+  id: string;
+  name: string;
+  iconUrl: string;
+}
+
+export interface Post {
+  id: string;
+  title: string;
+  content: string;
+  thumbnail: string;
+  postURL: string;
+  author: Author;
+  categories: CategoryType[];
+}
+
+export interface PostListResponse {
+  code: string;
+  message: string;
+  data: {
+    posts: Post[];
+  };
+}
+
+export interface GET_POSTS_PARAMS {
+  limit?: number;
+  offset?: number;
+}
+
 class PostApi {
-  public getPosts = async () => {
+  public getPosts = async ({ limit, offset }: GET_POSTS_PARAMS) => {
     return baseAxios.get("/curation-posts", {
       params: {
-        offset: 0,
-        limit: 10000
+        offset,
+        limit
       }
     });
   };

@@ -11,16 +11,27 @@ interface Props {
 
 const Content: React.FC<Props> = ({ title, description }) => {
   return (
-    <div>
+    <Container>
       <Title color={Colors.slate50}>{title}</Title>
-      <Body2 color={Colors.slate30}>{description}</Body2>
-    </div>
+      <Description color={Colors.slate30}>{description}</Description>
+    </Container>
   );
 };
 
 export default Content;
 
+const Container = styled.div`
+  min-height: 124px;
+`;
+
 const Title = styled(Heading2)`
   font-weight: bold;
   margin-bottom: 6px;
+`;
+
+const Description = styled(Body2)`
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 `;

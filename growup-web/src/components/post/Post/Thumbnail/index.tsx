@@ -16,6 +16,7 @@ const Thumbnail: React.FC<Props> = ({ thumbnailURL }) => {
 const Image = styled.img`
   width: 100%;
   object-fit: cover;
+  height: 224px;
 `;
 
 export default Thumbnail;

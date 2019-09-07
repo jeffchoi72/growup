@@ -1,18 +1,19 @@
+import { Author } from 'common/api/post.api';
 import { Colors } from 'growup-ui';
 import Body2 from 'growup-ui/typography/Body2';
 import React from 'react';
 import styled from 'styled-components';
 
 interface Props {
-  name: string;
-  imageURL: string;
+  author: Author;
 }
 
-const AuthorProfile: React.FC<Props> = ({ name, imageURL }) => {
+const AuthorProfile: React.FC<Props> = ({ author }) => {
+  const { name, iconUrl } = author;
   return (
     <Container>
       <ImageWrapper>
-        <Image src={imageURL} />
+        <Image src={iconUrl} />
       </ImageWrapper>
       <Body2 color={Colors.slate20}>{name}</Body2>
     </Container>

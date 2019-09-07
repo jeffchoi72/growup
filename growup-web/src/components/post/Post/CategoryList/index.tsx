@@ -1,13 +1,11 @@
+import { CategoryType } from 'common/api/post.api';
 import { Colors } from 'growup-ui';
 import Body2 from 'growup-ui/typography/Body2';
 import React from 'react';
 import styled from 'styled-components';
 
 interface Props {
-  categories: {
-    id: string;
-    content: string;
-  }[];
+  categories: CategoryType[];
 }
 
 const CategoryList: React.FC<Props> = ({ categories }) => {
@@ -15,7 +13,7 @@ const CategoryList: React.FC<Props> = ({ categories }) => {
     <Container>
       {categories.map(category => (
         <Category key={category.id} color={Colors.slate20}>
-          {category.content}
+          #{category.name}
         </Category>
       ))}
     </Container>
